@@ -1,0 +1,10 @@
+line:
+  greeting: Welcome to the book catalog from a development Kubernetes environment!
+spring:
+  datasource:
+    url: jdbc:postgresql://line-postgres/linedb_catalog
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://line-keycloak/realms/LineBookstore
