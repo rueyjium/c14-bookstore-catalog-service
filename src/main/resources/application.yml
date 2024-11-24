@@ -14,10 +14,11 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
   config:
-#    import: "configserver:"
-    import: "optional:configserver:"
+#    import: "optional:configserver:"
+    import: "" # When using Config Service, add "optional:configserver:"    
   cloud:
     config:
+      enabled: false # When using Config Service, set to true      
       uri: http://localhost:8888
       request-connect-timeout: 3000
       request-read-timeout: 3000
@@ -27,6 +28,8 @@ spring:
         initial-interval: 1000 # 1s
         max-interval: 2000 # 2s
         multiplier: 1.1
+  profiles:
+    active: load-test-data     
   datasource:
     username: user
     password: password

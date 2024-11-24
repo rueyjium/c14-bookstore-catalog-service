@@ -1,10 +1,10 @@
-plugins {
+﻿plugins {
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'java'
 }
 
-group = 'com.linebookstore'
+group = 'lab.bookstore'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -64,18 +64,18 @@ springBoot {
 }
 
 bootRun {
-	systemProperty 'spring.profiles.active', 'testdata'
+	systemProperty 'spring.profiles.active', 'load-test-data'
 }
 
-bootBuildImage {
-	builder = "docker.io/paketobuildpacks/builder-jammy-base"
-	imageName = "${project.name}"
-	environment = ["BP_JVM_VERSION": "17"]
 
+bootBuildImage {
+	imageName = "cloudbook/${project.name}:${project.version}"
+	environment = ["BP_JVM_VERSION": "17"]
 	docker {
+//	    host = "//./pipe/dockerDesktopLinuxEngine"	// https://github.com/spring-projects/spring-boot/issues/41199, Windows Only
 		publishRegistry {
 			username = project.findProperty("registryUsername")
-			password = project.findProperty("registryToken")
+			password = project.findProperty("registryPwd")
 			url = project.findProperty("registryUrl")
 		}
 	}
