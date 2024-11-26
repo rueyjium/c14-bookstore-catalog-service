@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: catalog-service
-          image: cloudbook/c13-catalog-service:0.0.1-SNAPSHOT
+          image: cloudbook/c14-bookstore-catalog-service
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
